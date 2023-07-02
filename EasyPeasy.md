@@ -31,5 +31,12 @@ We can see that port 80 is open on the target and that it is hosting nginx versi
 
 **Answer: 1.16.1**
 
-**Question 3:**  
+**Question 3: What is running on the highest port?**  
+The highest port discovered from the nmap scan is 65524, so let's take a look at what nmap found.  
 ![EasyPeasy Nmap Scan Results Apache](resources/EasyPeasyNmapApache.png)  
+Looks like nmap found port 65524 to be hosting an apache http server instance. Therefore, we have our answer.  
+
+**Answer: apache**  
+
+### Task 2: Compromising the machine
+#### Step 1: Gobuster Directory Enumeration
