@@ -26,7 +26,7 @@ We can find that ports 80, 6498, and 65524 are open. Thus, the answer to this qu
 
 **Question 2: What is the version of nginx?**  
 For your convenience, I have placed the relevant section of the nmap scan below.  
- ![EasyPeasy Nmap Scan Results Apache](resources/EasyPeasyNmapNginx.png) 
+ ![EasyPeasy Nmap Scan Results Apache](resources/EasyPeasyNmapNginx.png)  
 We can see that port 80 is open on the target and that it is hosting nginx version 1.16.1. Therefore, the version of nginx is 1.16.1.  
 
 **Answer: 1.16.1**
