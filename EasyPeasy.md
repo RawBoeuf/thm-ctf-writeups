@@ -50,3 +50,5 @@ Looks like nmap found port 65524 to be hosting an apache http server instance. T
 
 ### Task 2: Compromising the machine
 #### Step 1: Gobuster Directory Enumeration
+With the nmap scan out of the way, we can start enumerating this machine through the use of Gobuster or a tool with similar capabilities.  
+![Second Flag from md5hashing.net](resources/EasyPeasySecondFlag.png)
