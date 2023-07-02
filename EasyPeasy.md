@@ -10,4 +10,4 @@ This section details the steps I've taken to complete this CTF.
 #### Step 1: Nmap Scan
 To start off, I decided to go with an nmap scan to enumerate the deployed machine. I ran this command on the AttackBox: `nmap -vv -T5 -A -p- MACHINE_IP`
 The results of the scan are below.
-![EasyPeasy Nmap Scan Results](/results/EasyPeasyNmapScan.png)
+![EasyPeasy Nmap Scan Results](/resources/EasyPeasyNmapScan.png)
