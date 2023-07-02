@@ -1,2 +1,2 @@
 # thm-ctf-writeups
-My CTF writeups.
+My TryHackMe CTF writeups.
