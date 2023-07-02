@@ -19,8 +19,11 @@ If you're not interested in my breakdown of what the flags/switches on the nmap 
 #### Results Analysis/Answering The Task Questions
 **Question 1: How many ports are open?**  
 
-If we take a look at the results [above](https://github.com/RawBoeuf/thm-ctf-writeups/edit/main/EasyPeasy.md#step-1-nmap-scan).   
+If we take a look at the nmap scan results [above](https://github.com/RawBoeuf/thm-ctf-writeups/edit/main/EasyPeasy.md#step-1-nmap-scan).   
 We can find that ports 80, 6498, and 65524 are open. Thus, the answer to this question is 3.  
 
-**Answer: 3**
+**Answer: 3**  
 
+**Question 2: What is the version of nginx?**  
+From the nmap scan results, we can see that .
+![EasyPeasy Nmap Scan Results Apache](resources/EasyPeasyNmapApache.png)
