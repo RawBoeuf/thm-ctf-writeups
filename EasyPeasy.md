@@ -18,9 +18,13 @@ If you're not interested in my breakdown of what the flags/switches/options on t
 First on the board is the `-vv` switch. (I will be using "switch" from now on to not confuse it with the CTF's flags/objectives.)  
 This switch enables verbosity level 2. Another similar switch is `-v` this switch increases the verbosity by one level. Verbosity level 2 just means that nmap will provide you with more output. It's especially nice when you can see nmap report the ports as it discovers them although if you want more detailed information such as OS detection, you have to wait for the scan to finish. I just use this in every nmap scan because it's a good habit to have. It is also what is recommended in TryHackMe's introduction room to nmap.  
 
-Next, we have the `-T5` switch. This switch determines the timing of the nmap scan or how fast the connection is. Currently, we are targeting a very insecure machine so there's no need to worry about IPS or IDS so I just went with T5 for the fastest results. But, in general, the manual page of nmap recommends you use -T4 on your nmap scans as T5 is a very aggressive setting.
+Next, we have the `-T5` switch. This switch determines the timing of the nmap scan or how fast the connection is. Currently, we are targeting a very insecure machine so there's no need to worry about IPS or IDS so I just went with T5 for the fastest results. But, in general, the [manual page](https://linux.die.net/man/1/nmap) of nmap recommends you use -T4 on your nmap scans as T5 is a very aggressive setting.
 
-Moving to the `-A` switch. This switch enables aggressive scan options. According to the [nmap man page](https://linux.die.net/man/1/nmap), this option enables OS detection `-O`, version scanning `-sV`, script scanning `-sC`, and traceroute `--traceroute`.
+Moving to the `-A` switch. This switch enables aggressive scan options. According to the nmap man page, this option enables OS detection `-O`, version scanning `-sV`, script scanning `-sC`, and traceroute `--traceroute`. For the purposes of Task 1, we only really need the `-sV` switch, but the `-A` switch provides some extra information that we will be using in Task 2.
+
+Lastly, we have the `-p-` switch. This switch determines which ports nmap will scan on the target machine. The original switch is `-p` where you can pass parameters to instruct nmap on which ports to scan. For a more detailed breakdown of it, you can have a look at the manual page. My addition of a dash to the switch just means that nmap will scan through the full port range, so ports 1-65535.
+
+Now that we have an understanding of what the nmap scan is doing, we can move onto analyzing the results and answering the questions.
 
 #### Results Analysis/Answering The Task Questions
 **Question 1: How many ports are open?**  
