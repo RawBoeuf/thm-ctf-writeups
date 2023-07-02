@@ -25,5 +25,5 @@ We can find that ports 80, 6498, and 65524 are open. Thus, the answer to this qu
 **Answer: 3**  
 
 **Question 2: What is the version of nginx?**  
-From the nmap scan results, we can see that .
+From the nmap scan results, we can see that .  
 ![EasyPeasy Nmap Scan Results Apache](resources/EasyPeasyNmapApache.png)
