@@ -103,7 +103,7 @@ That's a lot of HTML! Let's give it a quick skim and look for anything that look
 
 ![Apache Hidden Paragraph](/resources/easypeasy/HiddenParagraph.png)
 
-There seems to be a hidden paragraph that contains an encoded flag. The paragraph says it's encoded in a base. I'll be using CyberChef again, but this time I'll using its base decoding function. 
+There seems to be a hidden paragraph that contains an encoded flag. The paragraph says it's encoded in a base. I'll be using CyberChef again, but this time I'll be using its base decoding function. 
 
 After a few tries, we get a comprehensible output from Base62. This looks to be our fourth flag.
 
