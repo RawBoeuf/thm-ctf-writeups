@@ -9,11 +9,9 @@ This is still heavily under construction, I hope you find my explanations useful
 Here is a list of writeups that I have started and/or finished:  
 
 🛠️ **Under Construction** 🛠️  
-
-- [EasyPeasy](/writeups/EasyPeasy.md)
     
 ✅ **Finished** ✅  
-N/A
+- [EasyPeasy](/writeups/EasyPeasy.md)
 
 📒 **My Other Writeup Repositories** 📒  
 N/A
