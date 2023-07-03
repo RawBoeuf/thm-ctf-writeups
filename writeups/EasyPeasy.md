@@ -99,6 +99,10 @@ There's nothing else of interest at first glance, so let's take a look at the HT
 
 ![Apache HTML Enumeration](/resources/easypeasy/EasyPeasyApacheHomepageHTML.png)  
 
+That's a lot of HTML! Let's give it a quick skim and look for anything that looks out of place.  
+
+![Apache Hidden Paragraph](/resources/easy/peasy/HiddenParagraph.png)
+
 There seems to be a hidden paragraph that contains an encoded flag. The paragraph says it's encoded in a base. I'll be using CyberChef again, but this time I'll using its base decoding function. 
 
 After a few tries, we get a comprehensible output from Base62. This looks to be our fourth flag.
