@@ -10,7 +10,7 @@ Here is a list of writeups that I have started and/or finished:
 
 🛠️ **Under Construction** 🛠️  
 
-- [EasyPeasy](https://github.com/RawBoeuf/thm-ctf-writeups/blob/main/EasyPeasy.md)
+- [EasyPeasy](/writeups/EasyPeasy.md)
     
 ✅ **Finished** ✅  
 N/A
