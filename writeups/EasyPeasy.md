@@ -107,7 +107,7 @@ There seems to be a hidden paragraph that contains an encoded flag. The paragrap
 
 After a few tries, we get a comprehensible output from Base62. This looks to be our fourth flag.
 
-![CyberChef Decoded](resources/easypeasy/EasyPeasyFourthFlag.png)  
+![CyberChef Decoded](/resources/easypeasy/EasyPeasyFourthFlag.png)  
 
 **Question 4: What is the hidden directory?**  
 **Answer: /n0th1ng3ls3m4tt3r**  
