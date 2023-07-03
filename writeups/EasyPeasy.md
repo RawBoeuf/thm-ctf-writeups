@@ -65,11 +65,24 @@ Let's take a look at the homepage.
 
 Nothing at the beginning there, let's scroll down a bit. Oh, that's odd. Looks like someone just left flag 3 in the open. Well, I guess we have our answer to Question 3.
 **Question 3: Crack the hash with easypeasy.txt, What is the flag 3?**  
-**Answer: flag{9fdafbd64c47471a8f54cd3fc64cd312}**
+**Answer: flag{9fdafbd64c47471a8f54cd3fc64cd312}**  
   
-![Flag 3](/resources/easypeasy/EasyPeasyFlag3.png)
+![Flag 3](/resources/easypeasy/EasyPeasyFlag3.png)  
+
+There's nothing else of interest at first glance, so let's take a look at the HTML for the page.  
 
 ![Apache HTML Enumeration](/resources/easypeasy/EasyPeasyApacheHomepageHTML.png)  
+
+There seems to be a hidden paragraph that contains an encoded flag. The paragraph says it's encoded in a base. So, let's throw it into [CyberChef](https://cyberchef.org/).   
+
+![CyberChef Image](/resources/easypeasy/CyberChef.png)  
+
+After a few tries, we get a comprehensible output from Base62.  
+
+![Flag 2 Decoded](/resources/easypeasy/EasyPeasyFlag2.png)  
+
+**Question 2: Further enumerate the machine, what is flag 2?**
+**Answer: flag{1m_s3c0nd_fl4g}**
 
 ![Hidden Page](/resources/easypeasy/EasyPeasyHidden.png)   
 
