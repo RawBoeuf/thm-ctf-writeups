@@ -1,7 +1,7 @@
 # [EasyPeasy Room](https://tryhackme.com/room/easypeasyctf)
 ![EasyPeasy Room Image](/resources/easypeasy/EasyPeasy.png)
 ## Introduction
-The EasyPeasy Room is an "easy" rated CTF room on TryHackMe that aims to give beginners in Cybersecurity a way to apply the tools that they've learned i.e. nmap, Gobuster. in a more practical scenario. In this document, I will explain the steps I take as I go through this room. I started this room on July 2nd of 2023 and I will continue to detail my steps as I go further through the room.
+The EasyPeasy Room is an "easy" rated CTF room on [TryHackMe](https://tryhackme.com/signup?referrer=61a467c9f76e7b004b1669ae) that aims to give beginners in Cybersecurity a way to apply the tools that they've learned i.e. nmap, Gobuster. in a more practical scenario. In this document, I will explain the steps I take as I go through this room. I started this room on July 2nd of 2023 and I will continue to detail my steps as I go further through the room.
 
 ## Write-Up
 This section details the steps I've taken to complete this CTF.
