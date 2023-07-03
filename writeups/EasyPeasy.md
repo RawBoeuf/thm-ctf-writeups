@@ -56,11 +56,19 @@ First, let's take a look at the robots.txt file on both ports.
 
 ![Robots.txt Apache](/resources/easypeasy/EasyPeasyApacheRobotsTxt.png)  
 
-It looks like port 65524 has something interesting for the User-Agent field. I decided it looks like a hash, so I put it into CyberChef's analyze hash function.
+It looks like port 65524 has something interesting for the User-Agent field. I decided it looks like a hash. So, let's throw it into [CyberChef](https://cyberchef.org/).   
+
+![CyberChef Image](/resources/easypeasy/CyberChef.png)  
+
+I put it into CyberChef's analyze hash function. Looks like we have a lead.  
 
 ![CyberChef Flag 2 Analyzer](/resources/easypeasy/EasyPeasyFlag2CyberChef.png)  
 
-![Flag 2 Decoded](/resources/easypeasy/EasyPeasyFlag2.png)  
+So, I ran it through a few MD5 decoders, and md5hashing.net scored a result.  
+
+![Second Flag from md5hashing.net](/resources/easypeasy/Task2SecondFlagDecode.png)   
+
+There's our second flag!  
 
 **Question 2: Further enumerate the machine, what is flag 2?**  
 **Answer: flag{1m_s3c0nd_fl4g}**  
@@ -91,13 +99,18 @@ There's nothing else of interest at first glance, so let's take a look at the HT
 
 ![Apache HTML Enumeration](/resources/easypeasy/EasyPeasyApacheHomepageHTML.png)  
 
-There seems to be a hidden paragraph that contains an encoded flag. The paragraph says it's encoded in a base. So, let's throw it into [CyberChef](https://cyberchef.org/).   
+That's a lot of HTML! Let's give it a quick skim and look for anything that looks out of place.  
 
-![CyberChef Image](/resources/easypeasy/CyberChef.png)  
+![Apache Hidden Paragraph](/resources/easy/peasy/HiddenParagraph.png)
+
+There seems to be a hidden paragraph that contains an encoded flag. The paragraph says it's encoded in a base. I'll be using CyberChef again, but this time I'll using its base decoding function. 
 
 After a few tries, we get a comprehensible output from Base62. This looks to be our fourth flag.
 
-![CyberChef Decoded](resources/easypeasy/EasyPeasyFourthFlag.png)
+![CyberChef Decoded](resources/easypeasy/EasyPeasyFourthFlag.png)  
+
+**Question 4: What is the hidden directory?**  
+**Answer: /n0th1ng3ls3m4tt3r**  
 
 #### Step 2: Directory Enumeration  
 Now that we can't find anything through a cursory glance, let's try to find some hidden directories. For this, we'll need a tool like Gobuster. Dirbuster is another tool that you can also use, but Gobuster is what we'll be using in this walkthrough.  
@@ -121,5 +134,3 @@ At first glance, there doesn't really seem to be anything going on. So, we'll ha
 Hm. It looks like there's nothing here either. Let's have another go at this with gobuster. The command I'll be running is `gobuster dir -u http://MACHINE_IP/hidden/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`  
 
 ![Gobuster Results 2](/resources/easypeasy/)
-
-![Second Flag from md5hashing.net](/resources/easypeasy/EasyPeasySecondFlag.png)   
