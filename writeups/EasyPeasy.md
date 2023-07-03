@@ -99,11 +99,14 @@ There's nothing else of interest at first glance, so let's take a look at the HT
 
 ![Apache HTML Enumeration](/resources/easypeasy/EasyPeasyApacheHomepageHTML.png)  
 
-There seems to be a hidden paragraph that contains an encoded flag. The paragraph says it's encoded in a base. I'll be using CyberChef again but this time its base decoding function. 
+There seems to be a hidden paragraph that contains an encoded flag. The paragraph says it's encoded in a base. I'll be using CyberChef again, but this time I'll using its base decoding function. 
 
 After a few tries, we get a comprehensible output from Base62. This looks to be our fourth flag.
 
-![CyberChef Decoded](resources/easypeasy/EasyPeasyFourthFlag.png)
+![CyberChef Decoded](resources/easypeasy/EasyPeasyFourthFlag.png)  
+
+**Question 4: What is the hidden directory?**  
+**Answer: /n0th1ng3ls3m4tt3r**  
 
 #### Step 2: Directory Enumeration  
 Now that we can't find anything through a cursory glance, let's try to find some hidden directories. For this, we'll need a tool like Gobuster. Dirbuster is another tool that you can also use, but Gobuster is what we'll be using in this walkthrough.  
