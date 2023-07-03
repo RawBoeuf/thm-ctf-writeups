@@ -13,7 +13,7 @@ Here is a list of writeups that I have started and/or finished:
 ✅ **Finished** ✅  
 N/A
 
-📒 **My Other Writeup Repositories** 📒
+📒 **My Other Writeup Repositories** 📒  
 N/A
 
 ## Recommended Resources
