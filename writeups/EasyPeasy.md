@@ -249,7 +249,7 @@ There we go. It should be in .root.txt so let's run `cat .root.txt` real quick a
 
 ![Flag 8](/resources/easypeasy/flag8.png)
 
-**Question 8:**  
+**Question 8: What is the root flag?**  
 **Answer: flag{63a9f0ea7bb98050796b649e85481845}**  
 
 #### Cronjob Detailed Breakdown  
