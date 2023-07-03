@@ -147,6 +147,69 @@ Oh? Another hidden paragraph? That's interesting. Whatever the contents are seem
 
 ![First Flag Decoded](/resources/easypeasy/FirstFlag.png)
 
-Well, there's our first flag!
+Well, there's our first flag!  
 
+**Question 1: Using GoBuster, find flag 1.**  
+**Answer: flag{f1rs7_fl4g}**  
 
+This directory seems to be a dead end. So, let's go check out that hidden directory we found before for Question 4.  
+
+Accessing the directory gives us this page below:  
+![n0th1ng3ls3m4tt3r](/resources/easypeasy/n0th1ng3ls3m4tt3r.png)  
+
+Nothing at first glance, so let's have a look at the HTML.  
+
+![n0th1ng3ls3m4tt3r HTML](/resources/easypeasy/n0th1ng3ls3m4tt3rHTML.png)  
+
+The paragraph element seems to have something. It looks like a hash, so I'll put it into CyberChef's hash checker.   
+
+![n0th1ng3ls3m4tt3r CyberChef](/resources/easypeasy/n0th1ng3ls3m4tt3rCyberChef.png)  
+
+After some trial and error, I was able to determine that the hash was a GOST hash. Here are the results from md5hashing.net's GOSH decoder.  
+
+![md5hashing GOST](resources/easypeasy/GOST.png)  
+
+**Question 5: Using the wordlist that provided to you in this task crack the hash
+what is the password?**
+**Answer: mypasswordforthatjob**
+
+Some gobuster enumeration revealed no results, so I determined there was probably something fishy to do with the image. So I downloaded it onto my attackbox and ran steghide extraction on it. `steghide extract -sf index.png`  
+`extract` specifies that we want to extract hidden information from the file. `-sf` specifies the file that we want to extract the information from. More information can be found on the steghide [man page](https://steghide.sourceforge.net/documentation/manpage.php).  
+
+It requires a passphrase, well we still haven't used the password from the previous question so let's try it.
+
+![StegHide](/resources/easypeasy/StegHideWorks.png)  
+
+Let's have a look at what steghide has to offer.  
+
+![StegHide Results](/resources/easypeasy/SteghideResults.png)  
+
+These results look promising. It looks like the password is in binary, let's deobfuscate that real quick.  
+
+![Binary Conversion](/resources/easypeasy/binaryconversion.png)  
+
+**Question 6: What is the password to login to the machine via SSH?**  
+**Answer: iconvertedmypasswordtobinary**  
+
+As the question implies, let's log in to the machine using SSH. I'll be running this command: `ssh boring@MACHINE_IP -p 6498`  
+
+Saying yes to the prompt and entering the password we got from the previous question, I find myself on the machine. First thing is to find the flag for this question.  
+
+![Login Success](/resources/easypeasy/boringlogin.png)  
+
+Let's run `ls` also known as "list" to see what's in the user's home directory.  
+
+![LS](/resources/easypeasy/lsresults.png)  
+
+Cool! A text document. To view its contents, I'll run `cat user.txt`.  
+
+![user.txt](/resources/easypeasy/usertxtresults.png)  
+
+These results look... weird. Following the flag convention that we've seen before the first four letters should be flag. It's most likely a Caesar Cipher. So let's run this through a decoder and see what we get.
+
+![usertxt Decoded](/resources/easypeasy/usertxtdecoded.png)  
+
+**Question 7: What is the user flag?**  
+**Answer: flag{n0wits33msn0rm4l}**  
+
+At this point, I was a bit stuck. The question implies that we need root access but I wasn't sure what to do. The description of the room mentioned cronjobs, but I had no clue how to exploit it so I took a look at [this writeup](https://github.com/iLinxz/CTF-Walkthroughs/blob/TryHackMe/TryHackMe%23EasyPeasy.pdf) by iLinxz. You can take a look at their writeup or see my explanation below for the process.
