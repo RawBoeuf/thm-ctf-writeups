@@ -56,7 +56,14 @@ First, let's take a look at the robots.txt file on both ports.
 
 ![Robots.txt Apache](/resources/easypeasy/EasyPeasyApacheRobotsTxt.png)  
 
-It looks like port 65524 has something interesting for the User-Agent field.
+It looks like port 65524 has something interesting for the User-Agent field. I decided it looks like a hash, so I put it into CyberChef's analyze hash function.
+
+![CyberChef Flag 2 Analyzer](/resources/easypeasy/EasyPeasyFlag2CyberChef)  
+
+![Flag 2 Decoded](/resources/easypeasy/EasyPeasyFlag2.png)  
+
+**Question 2: Further enumerate the machine, what is flag 2?**  
+**Answer: flag{1m_s3c0nd_fl4g}**  
 
 Let's have a look at the homepage and its HTML for any hidden information.  
 
@@ -85,12 +92,9 @@ There seems to be a hidden paragraph that contains an encoded flag. The paragrap
 
 ![CyberChef Image](/resources/easypeasy/CyberChef.png)  
 
-After a few tries, we get a comprehensible output from Base62. This looks to be our second flag.
+After a few tries, we get a comprehensible output from Base62. This looks to be our fourth flag.
 
-![Flag 2 Decoded](/resources/easypeasy/EasyPeasyFlag2.png)  
-
-**Question 2: Further enumerate the machine, what is flag 2?**
-**Answer: flag{1m_s3c0nd_fl4g}**
+![CyberChef Decoded](resources/easypeasy/EasyPeasyFourthFlag.png)
 
 #### Step 2: Directory Enumeration  
 Now that we can't find anything through a cursory glance, let's try to find some hidden directories. For this, we'll need a tool like Gobuster. Dirbuster is another tool that you can also use, but Gobuster is what we'll be using in this walkthrough.  
