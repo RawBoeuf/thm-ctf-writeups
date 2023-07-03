@@ -89,7 +89,7 @@ Now that we can't find anything through a cursory glance, let's try to find some
 
 The command I'll be running is `gobuster dir -u http://MACHINE_IP/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`.  
 
-`dir` sets gobuster into directory enumeration mode. `-u` sets the url that we will be enumerating. Finally, `-w` sets the wordlist that we will be using for directory enumeration. In this case, I'll be using a preset wordlist that comes with the AttackBox "directory-list-2.3-medium.txt".  
+`dir` sets gobuster into directory enumeration mode. `-u` sets the url that we will be enumerating. Finally, `-w` sets the wordlist that we will be using for directory enumeration. In this case, I'll be using a preset wordlist that comes with the AttackBox "directory-list-2.3-medium.txt". For more detailed information, visit the gobuster [man page](https://www.kali.org/tools/gobuster/).  
 
 Let's take a look at the results of gobuster below.  
 
