@@ -101,4 +101,6 @@ That's great, we found something! Let's go to it on the web browser to see what 
 
 At first glance, there doesn't really seem to be anything going on. So, we'll have a look at the HTML source code.
 
+![Hidden HTML](/resources/easypeasy/EasyPeasyHiddenHTML.png)
+
 ![Second Flag from md5hashing.net](/resources/easypeasy/EasyPeasySecondFlag.png)   
