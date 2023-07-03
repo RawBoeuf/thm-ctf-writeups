@@ -58,7 +58,7 @@ First, let's take a look at the robots.txt file on both ports.
 
 It looks like port 65524 has something interesting for the User-Agent field. I decided it looks like a hash, so I put it into CyberChef's analyze hash function.
 
-![CyberChef Flag 2 Analyzer](/resources/easypeasy/EasyPeasyFlag2CyberChef)  
+![CyberChef Flag 2 Analyzer](/resources/easypeasy/EasyPeasyFlag2CyberChef.png)  
 
 ![Flag 2 Decoded](/resources/easypeasy/EasyPeasyFlag2.png)  
 
