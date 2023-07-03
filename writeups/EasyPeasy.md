@@ -77,12 +77,17 @@ There seems to be a hidden paragraph that contains an encoded flag. The paragrap
 
 ![CyberChef Image](/resources/easypeasy/CyberChef.png)  
 
-After a few tries, we get a comprehensible output from Base62.  
+After a few tries, we get a comprehensible output from Base62. This looks to be our second flag.
 
 ![Flag 2 Decoded](/resources/easypeasy/EasyPeasyFlag2.png)  
 
 **Question 2: Further enumerate the machine, what is flag 2?**
 **Answer: flag{1m_s3c0nd_fl4g}**
+
+#### Step 2: Directory Enumeration  
+Now that we can't find anything through a cursory glance, let's try to find some hidden directories. For this, we'll need a tool like Gobuster. Dirbuster is another tool that you can also use, but Gobuster is what we'll be using in this walkthrough.  
+
+![Gobuster Results](/resources/easypeasy/GobusterNginxResults1.png)
 
 ![Hidden Page](/resources/easypeasy/EasyPeasyHidden.png)   
 
