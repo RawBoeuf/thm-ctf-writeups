@@ -167,7 +167,7 @@ The paragraph element seems to have something. It looks like a hash, so I'll put
 
 After some trial and error, I was able to determine that the hash was a GOST hash. Here are the results from md5hashing.net's GOSH decoder.  
 
-![md5hashing GOST](resources/easypeasy/GOST.png)  
+![md5hashing GOST](/resources/easypeasy/GOST.png)  
 
 **Question 5: Using the wordlist that provided to you in this task crack the hash
 what is the password?**
