@@ -133,4 +133,20 @@ At first glance, there doesn't really seem to be anything going on. So, we'll ha
 
 Hm. It looks like there's nothing here either. Let's have another go at this with gobuster. The command I'll be running is `gobuster dir -u http://MACHINE_IP/hidden/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`  
 
-![Gobuster Results 2](/resources/easypeasy/)
+![Gobuster Results 2](/resources/easypeasy/GobusterNginxResults2.png)  
+
+Let's have a look at this directory that we've found. 
+
+![Whatever Directory](/resources/easypeasy/EasyPeasyWhatever.png)  
+
+The page doesn't seem to have anything useful, so let's have a look at the HTML.  
+
+![Whatever HTML](/resources/easypeasy/EasyPeasyWhateverHTML.png)  
+
+Oh? Another hidden paragraph? That's interesting. Whatever the contents are seem to be obfuscated. I'll check with CyberChef to see what it is. After a few tries, I found that it was encoded in Base64.
+
+![First Flag Decoded](/resources/easypeasy/FirstFlag.png)
+
+Well, there's our first flag!
+
+
