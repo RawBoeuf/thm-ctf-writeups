@@ -63,7 +63,7 @@ Let's take a look at the homepage.
 
 ![Apache Enumeration](/resources/easypeasy/EasyPeasyApacheHomepage.png)  
 
-Oh, that's odd. Looks like someone just left flag 3 in the open. Well, I guess we have our answer to Question 3.
+Nothing at the beginning there, let's scroll down a bit. Oh, that's odd. Looks like someone just left flag 3 in the open. Well, I guess we have our answer to Question 3.
 **Question 3: Crack the hash with easypeasy.txt, What is the flag 3?**  
 **Answer: flag{9fdafbd64c47471a8f54cd3fc64cd312}**
   
