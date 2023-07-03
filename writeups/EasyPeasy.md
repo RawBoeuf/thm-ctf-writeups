@@ -1,5 +1,5 @@
 # [EasyPeasy Room](https://tryhackme.com/room/easypeasyctf)
-![EasyPeasy Room Image](/resources/EasyPeasy.png)
+![EasyPeasy Room Image](/resources/easypeasy/EasyPeasy.png)
 ## Introduction
 The EasyPeasy Room is an "easy" rated CTF room on TryHack that aims to give beginners in Cybersecurity a way to apply the tools that they've learned i.e. nmap, Gobuster. in a more practical scenario. In this document, I will explain the steps I take as I go through this room. I have started this room on July 2nd of 2023 and I will continue to detail my steps as I go further through the room.
 
@@ -11,7 +11,7 @@ This section details the steps I've taken to complete this CTF.
 To start off, I decided to go with an nmap scan to enumerate the deployed machine. I ran this command on the AttackBox:   
 `nmap -vv -T5 -A -p- MACHINE_IP`  
 The results of the scan are below.  
-![EasyPeasy Nmap Scan Results](/resources/EasyPeasyNmapScan.png)
+![EasyPeasy Nmap Scan Results](/resources/easypeasy/EasyPeasyNmapScan.png)
 #### Nmap Command Breakdown
 If you're not interested in my breakdown of what the flags/switches/options on the nmap command do, you can skip by clicking [here](https://github.com/RawBoeuf/thm-ctf-writeups/edit/main/EasyPeasy.md#results-analysisanswering-the-task-questions).
 
@@ -35,13 +35,13 @@ We can find that ports 80, 6498, and 65524 are open. Thus, the answer to this qu
 
 **Question 2: What is the version of nginx?**  
 For your convenience, I have put the relevant section of the nmap scan below.  
- ![EasyPeasy Nmap Scan Results Apache](resources/EasyPeasyNmapNginx.png)  
+ ![EasyPeasy Nmap Scan Results Apache](/resources/easypeasy/EasyPeasyNmapNginx.png)  
 We can see that port 80 is open on the target and that it is hosting nginx version 1.16.1. Therefore, the version of nginx is 1.16.1.  
 **Answer: 1.16.1**
 
 **Question 3: What is running on the highest port?**  
 The highest port discovered from the nmap scan is 65524, so let's take a look at what nmap found.  
-![EasyPeasy Nmap Scan Results Apache](resources/EasyPeasyNmapApache.png)  
+![EasyPeasy Nmap Scan Results Apache](/resources/easypeasy/EasyPeasyNmapApache.png)  
 Looks like nmap found port 65524 to be hosting an apache http server instance. Therefore, we have our answer.  
 **Answer: apache**   
 
@@ -52,25 +52,25 @@ Before we do anything else, we can do some basic info-gathering. We see that the
 
 First, I'll have a look at the homepage and its HTML for any hidden information.  
 
-![Nginx Enumeration](resources/EasyPeasyNginxHomepage.png)  
+![Nginx Enumeration](/resources/easypeasy/EasyPeasyNginxHomepage.png)  
 
 This looks like a default thank you page for someone who's just got Nginx running. Maybe the creator of the machine has hidden something in the HTML code?  
 
-![Nginx HTML Enumeration](resources/EasyPeasyNginxHomepageHTML.png)   
+![Nginx HTML Enumeration](/resources/easypeasy/EasyPeasyNginxHomepageHTML.png)   
 
 Looks like we're not getting anything here. I'll take a look at the Apache instance on port 65524. To get there we just need to state the port in the browser's search tab: ``http://MACHINE_IP:65524/``  
 Let's take a look at the homepage.  
 
-![Apache Enumeration](resources/EasyPeasyApacheHomepage.png)  
+![Apache Enumeration](/resources/easypeasy/EasyPeasyApacheHomepage.png)  
 
 Oh, that's odd. Looks like someone just left flag 3 in the open. Well, I guess we have our answer to Question 3.
 **Question 3: Crack the hash with easypeasy.txt, What is the flag 3?**  
 **Answer: flag{9fdafbd64c47471a8f54cd3fc64cd312}**
   
-![Flag 3](resources/EasyPeasyFlag3.png)
+![Flag 3](/resources/easypeasy/EasyPeasyFlag3.png)
 
-![Apache HTML Enumeration](resources/EasyPeasyApacheHomepageHTML.png)  
+![Apache HTML Enumeration](/resources/easypeasy/EasyPeasyApacheHomepageHTML.png)  
 
-![Hidden Page](resources/EasyPeasyHidden.png)   
+![Hidden Page](/resources/easypeasy/EasyPeasyHidden.png)   
 
-![Second Flag from md5hashing.net](resources/EasyPeasySecondFlag.png)   
+![Second Flag from md5hashing.net](/resources/easypeasy/EasyPeasySecondFlag.png)   
