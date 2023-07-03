@@ -48,9 +48,17 @@ Looks like nmap found port 65524 to be hosting an apache http server instance. T
 ### Task 2: Compromising the machine  
 **Note:** I'm showing you my own thought process so the order that I discovered the flags is not in the order of the tasks. I will still mention which flags correspond to which answer. Thanks for reading!
 #### Step 1: Cursory Investigation
-Before we do anything else, we can do some basic info-gathering. We see that the machine has two http services open on ports 80 and 65524.   
+Before we do anything else, we can do some basic info-gathering. We see that the machine has two http services open on ports 80 and 65524. The nmap scan even notes that both ports have a robots.txt file.
 
-First, I'll have a look at the homepage and its HTML for any hidden information.  
+First, let's take a look at the robots.txt file on both ports.  
+
+![Robots.txt Nginx](/resources/easypeasy/EasyPeasyNginxRobotsTxt.png)  
+
+![Robots.txt Apache](/resources/easypeasy/EasyPeasyApacheRobotsTxt.png)  
+
+It looks like port 65524 has something interesting for the User-Agent field.
+
+Let's have a look at the homepage and its HTML for any hidden information.  
 
 ![Nginx Enumeration](/resources/easypeasy/EasyPeasyNginxHomepage.png)  
 
@@ -102,5 +110,9 @@ That's great, we found something! Let's go to it on the web browser to see what 
 At first glance, there doesn't really seem to be anything going on. So, we'll have a look at the HTML source code.
 
 ![Hidden HTML](/resources/easypeasy/EasyPeasyHiddenHTML.png)
+
+Hm. It looks like there's nothing here either. Let's have another go at this with gobuster. The command I'll be running is `gobuster dir -u http://MACHINE_IP/hidden/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`  
+
+![Gobuster Results 2](/resources/easypeasy/)
 
 ![Second Flag from md5hashing.net](/resources/easypeasy/EasyPeasySecondFlag.png)   
