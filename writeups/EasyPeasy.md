@@ -87,8 +87,18 @@ After a few tries, we get a comprehensible output from Base62. This looks to be 
 #### Step 2: Directory Enumeration  
 Now that we can't find anything through a cursory glance, let's try to find some hidden directories. For this, we'll need a tool like Gobuster. Dirbuster is another tool that you can also use, but Gobuster is what we'll be using in this walkthrough.  
 
-![Gobuster Results](/resources/easypeasy/GobusterNginxResults1.png)
+The command I'll be running is `gobuster dir -u http://MACHINE_IP/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`.  
+
+`dir` sets gobuster into directory enumeration mode. `-u` sets the url that we will be enumerating. Finally, `-w` sets the wordlist that we will be using for directory enumeration. In this case, I'll be using a preset wordlist that comes with the AttackBox "directory-list-2.3-medium.txt".  
+
+Let's take a look at the results of gobuster below.  
+
+![Gobuster Results](/resources/easypeasy/GobusterNginxResults1.png)  
+
+That's great, we found something! Let's go to it on the web browser to see what it shows.  
 
 ![Hidden Page](/resources/easypeasy/EasyPeasyHidden.png)   
+
+At first glance, there doesn't really seem to be anything going on. So, we'll have a look at the HTML source code.
 
 ![Second Flag from md5hashing.net](/resources/easypeasy/EasyPeasySecondFlag.png)   
